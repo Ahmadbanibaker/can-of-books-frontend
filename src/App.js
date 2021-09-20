@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import Profile from './Profile';
+import BestBooks from './BestBooks';
+import Login from './Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-
 
 class App extends React.Component {
 
@@ -37,9 +39,16 @@ class App extends React.Component {
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
+              <BestBooks />
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             </Route>
-            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route path="/Profile">
+              <Profile />
+              {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            </Route>
+            <Route path="/Login">
+              <Login onLogin = {this.loginHandler}/>
+            </Route>
           </Switch>
           <Footer />
         </Router>
@@ -47,5 +56,5 @@ class App extends React.Component {
     )
   }
 }
-////////
+//////////////////////////
 export default App;
